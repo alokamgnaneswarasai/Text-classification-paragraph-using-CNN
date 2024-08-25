@@ -1,0 +1,11 @@
+__pycache__/
+fasttext_model/
+*.bin
+*.zip
+*.vec
+*.csv
+*.pth
+*.xlsx
+
+!electronics_validation.csv
+.ipynb_checkpoints/
