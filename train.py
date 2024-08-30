@@ -5,12 +5,15 @@ from torch.utils.data import DataLoader
 from model import TwoLayerRNNClassifier
 from dataloader import get_dataloader
 from preprocessing import load_data
+# use F1 score as evaluation metric
+from sklearn.metrics import f1_score
 
 def train(model,train_loader,valid_loader,epochs,optimizer,criterion,device):
     
     model.train()
     model.to(device)
     valid_losses = []
+    max_F1 =0 
     for epoch in range(epochs):
         model.train()
         total_loss = 0
@@ -25,10 +28,14 @@ def train(model,train_loader,valid_loader,epochs,optimizer,criterion,device):
             total_loss += loss.item()
         print(f'Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(train_loader)}')
         
-        train_loss, train_acc = eval(model,train_loader,criterion,device)
+        train_loss, train_acc , _ = eval(model,train_loader,criterion,device)
         print(f'Training Loss: {train_loss}, Training Accuracy: {train_acc}')
-        valid_loss, valid_acc = eval(model,valid_loader,criterion,device)
+        valid_loss, valid_acc ,f1 = eval(model,valid_loader,criterion,device)
         print(f'Validation Loss: {valid_loss}, Validation Accuracy: {valid_acc}')
+        
+        max_F1 = max(max_F1,f1)
+        print(f"Max F1 score: {max_F1}")
+        
         valid_losses.append(valid_loss)
         
         # do early stopping if validation loss does not decrease for 10 epochs
@@ -57,4 +64,10 @@ def eval(model,dataloader,criterion,device):
             _, predicted = torch.max(output, 1)
             total += labels.size(0)
             total_correct += (predicted == labels).sum().item()
-    return total_loss/len(dataloader), total_correct/total
+            
+    # calculate F1 score
+    y_true = labels.cpu().numpy()
+    y_pred = predicted.cpu().numpy()
+    f1 = f1_score(y_true, y_pred, average='weighted')
+   
+    return total_loss/len(dataloader), total_correct/total , f1

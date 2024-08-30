@@ -40,10 +40,3 @@ class TwoLayerRNNClassifier(nn.Module):
         
         
         
-    
-# # just to test the model
-# if __name__ == "__main__":
-#     model = TwoLayerRNNClassifier(300, 128, 64, 5)
-#     x = torch.rand(32, 6, 10, 300)
-#     output = model(x)
-#     print(output.size())

@@ -1,5 +1,5 @@
 import torch
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader 
 
 class TextDataset(Dataset):
     def __init__(self, data, labels):

@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import nltk
 from gensim.models import KeyedVectors as gensim_KeyedVectors
-# model = api.load('fasttext-wiki-news-subwords-300')
+
 model = gensim_KeyedVectors.load_word2vec_format('fasttext_model/wiki-news-300d-1M-subword.bin', binary=True)
 try:
     nltk.data.find('tokenizers/punkt')
@@ -74,11 +74,6 @@ def load_data(data_path,max_seq_length,maxsentences,label_shifting=0):
     return X,y
 
 
-# if __name__ == "__main__":
-    
-#     X,y = load_data('data.csv',max_seq_length=10,maxsentences=5)
-#     print(X.shape)
-#     print(y.shape)
    
             
     
