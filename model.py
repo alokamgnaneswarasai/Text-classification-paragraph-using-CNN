@@ -13,8 +13,8 @@ class TwoLayerRNNClassifier(nn.Module):
         super(TwoLayerRNNClassifier, self).__init__()
         self.hidden_dim1 = hidden_dim1  
         self.hidden_dim2 = hidden_dim2
-        self.rnn1 = nn.RNN(input_dim, hidden_dim1, batch_first=True) # First RNN to process each sentence
-        self.rnn2 = nn.RNN(hidden_dim1, hidden_dim2, batch_first=True) # second RNN to process the seequence of sentence embeddings
+        self.rnn1 = nn.GRU(input_dim, hidden_dim1, batch_first=True) # First RNN to process each sentence
+        self.rnn2 = nn.GRU(hidden_dim1, hidden_dim2, batch_first=True) # second RNN to process the seequence of sentence embeddings
         self.fc = nn.Linear(hidden_dim2, output_dim) 
         
         

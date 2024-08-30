@@ -56,6 +56,13 @@ def load_data(data_path,max_seq_length,maxsentences,label_shifting=0):
     avg_length = avg_sequence_length(data)
     print("Average sequence length: ",avg_length)
     
+    # Also check average number of sentences for each paragraph
+    avg_sentences = data['reviewText'].apply(lambda x: len(split_into_sentences(x))).mean()
+    print("Average number of sentences: ",avg_sentences)
+    
+    # So avg sequence length can be computed by dividing avg_length by avg_sentences
+    print("Avg sequence length in each sentence: ",avg_length/avg_sentences)
+    
     X = np.array([text_to_vector(text,max_seq_length,maxsentences) for text in data['reviewText']])
     if label_shifting:
         y = data['overall'].values-1

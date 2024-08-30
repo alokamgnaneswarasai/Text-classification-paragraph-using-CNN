@@ -3,7 +3,7 @@ fasttext_model/
 *.bin
 *.zip
 *.vec
-*.csv
+*.csv 
 *.pth
 *.xlsx
 
