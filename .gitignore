@@ -6,6 +6,7 @@ fasttext_model/
 *.csv 
 *.pth
 *.xlsx
+*.tsv
 
 !electronics_validation.csv
 .ipynb_checkpoints/
