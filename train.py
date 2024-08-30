@@ -51,7 +51,7 @@ def train(model,train_loader,valid_loader,epochs,optimizer,criterion,device):
 def eval(model,dataloader,criterion,device):
         
     # model.to(device)
-    model.eval()
+    # model.eval()
     total_loss = 0
     total_correct = 0
     total = 0

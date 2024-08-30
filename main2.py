@@ -39,9 +39,9 @@ criterion = torch.nn.CrossEntropyLoss()
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 print("Training started")
-train(model,train_loader,valid_loader,args.num_epochs,optimizer,criterion,device)
+train(model,train_loader,test_loader,args.num_epochs,optimizer,criterion,device)
 
-model = model.load_state_dict(torch.load('models/model.pth'))
+# model = model.load_state_dict(torch.load('models/model.pth')) 
 
-_,test_acc,_ = eval(model,test_loader,criterion,device)
-print(f'Final Test Accuracy: {test_acc}')
+# _,test_acc,_ = eval(model,test_loader,criterion,device)
+# print(f'Final Test Accuracy: {test_acc}')
