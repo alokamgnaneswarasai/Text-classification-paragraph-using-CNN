@@ -20,9 +20,9 @@ parser.add_argument('--data_path', type=str, default='data.csv', help='Path to t
 args = parser.parse_args()
 
 train_max_seq_length = 20
-train_max_sentences = 4
+train_max_sentences = 10
 valid_max_seq_length = 20
-valid_max_sentences = 4
+valid_max_sentences = 10
 
 data,labels = load_data('data.csv',max_seq_length=train_max_seq_length,maxsentences=train_max_sentences,label_shifting=1)
 train_loader = get_dataloader(data,labels,args.batch_size,shuffle=True)

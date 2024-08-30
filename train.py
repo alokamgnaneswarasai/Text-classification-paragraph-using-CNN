@@ -32,7 +32,7 @@ def train(model,train_loader,valid_loader,epochs,optimizer,criterion,device):
         valid_losses.append(valid_loss)
         
         # do early stopping if validation loss does not decrease for 10 epochs
-        if epoch>10 and valid_loss>min(valid_losses[-10:]):
+        if epoch>50 and valid_loss>min(valid_losses[-10:]):
             print('Early stopping triggered')
             break
         
